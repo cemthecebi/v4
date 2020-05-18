@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { navLinks } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
+import isUrl from '@utils/isUrl';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled.div`
@@ -84,7 +85,8 @@ const Menu = ({ menuOpen, toggleMenu }) => {
   const handleMenuClick = e => {
     const target = e.target;
     const isLink = target.hasAttribute('href');
-    const isNotMenu = target.classList && target.classList[0].includes('StyledContainer');
+    const isNotMenu =
+      target.classList && target.classList[0] && target.classList[0].includes('StyledContainer');
 
     if (isLink || isNotMenu) {
       toggleMenu();
@@ -103,7 +105,13 @@ const Menu = ({ menuOpen, toggleMenu }) => {
             {navLinks &&
               navLinks.map(({ url, name }, i) => (
                 <NavListItem key={i}>
-                  <NavLink to={url}>{name}</NavLink>
+                  {isUrl(url) ? (
+                    <a href={url} target="_blank">
+                      {name}
+                    </a>
+                  ) : (
+                    <NavLink to={url}>{name}</NavLink>
+                  )}
                 </NavListItem>
               ))}
           </NavList>

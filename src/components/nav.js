@@ -9,6 +9,7 @@ import { Menu } from '@components';
 import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
+import isUrl from '@utils/isUrl';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledContainer = styled.header`
@@ -282,7 +283,13 @@ class Nav extends Component {
                       <StyledListItem
                         key={i}
                         style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
-                        <StyledListLink to={url}>{name}</StyledListLink>
+                        {isUrl(url) ? (
+                          <a href={url} target="_blank">
+                            {name}
+                          </a>
+                        ) : (
+                          <StyledListLink to={url}>{name}</StyledListLink>
+                        )}
                       </StyledListItem>
                     </CSSTransition>
                   ))}
