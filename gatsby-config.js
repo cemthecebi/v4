@@ -16,14 +16,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-120142993-1",
+        trackingId: 'UA-120142993-1',
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'BrittanyChiang',
-        short_name: 'BrittanyChiang',
+        name: 'CemCebi',
+        short_name: 'CemCebi',
         start_url: '/',
         background_color: config.darkNavyColor,
         theme_color: config.navyColor,
